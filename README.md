@@ -1,6 +1,6 @@
 #Compress
 
-Include other file in the current project through autocomplete
+Include files in the current project through autocomplete
 
 ##Requirements
 
