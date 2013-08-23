@@ -80,17 +80,6 @@
                 case "csharp":
                     //Comes later
                     break;
-                case "css":
-                    //Import
-                    if (this.isAtEnd(text, "@importurl("+obj.prefix)) {
-                        this.sendSuggestion("css", obj.file);
-                    } else if (this.isAtEnd(text, "background-image:url(")) {  //background-image
-                        this.sendSuggestion("jpg", obj.file);
-                        this.sendSuggestion("jpeg", obj.file);
-                        this.sendSuggestion("gif", obj.file);
-                        this.sendSuggestion("png", obj.file);
-                    }
-                    break;
                 case "html":
                     //Script
                     if ((text.lastIndexOf("<script") > text.lastIndexOf(">")) && this.isAtEnd(text, "src=\""+obj.prefix)) {
@@ -119,7 +108,6 @@
                         this.sendSuggestion("tif", obj.file);
                         this.sendSuggestion("tiff", obj.file);
                     }
-                    break;
                 case "javascript":
                     //$.get
                     if (this.isAtEnd(text, "$.get(\""+obj.prefix)) {
@@ -139,6 +127,20 @@
                     //$.getScript
                     if (this.isAtEnd(text, "$.getScript(\""+obj.prefix)) {
                         this.sendSuggestion("js", obj.file);
+                    }
+                    //Support integrated files
+                    if (obj.syntax == "javascript") {
+                        break;
+                    }
+                case "css":
+                    //Import
+                    if (this.isAtEnd(text, "@importurl("+obj.prefix)) {
+                        this.sendSuggestion("css", obj.file);
+                    } else if (this.isAtEnd(text, "background-image:url(")) {  //background-image
+                        this.sendSuggestion("jpg", obj.file);
+                        this.sendSuggestion("jpeg", obj.file);
+                        this.sendSuggestion("gif", obj.file);
+                        this.sendSuggestion("png", obj.file);
                     }
                     break;
                 case "php":
