@@ -70,7 +70,7 @@
             switch (obj.syntax) {
                 case "c_cpp":
                     //Include statement
-                    if (this.isAtEnd(text, "include\"")) {
+                    if (this.isAtEnd(text, "#include\"")) {
                         this.sendSuggestion("c", obj.file);
                         this.sendSuggestion("cpp", obj.file);
                         this.sendSuggestion("h", obj.file);
