@@ -4,24 +4,22 @@
  * as-is and without warranty under the MIT License. 
  * See [root]/license.md for more information. This information must remain intact.
  */
-
+    //error_reporting(0);
+    
     require_once('../../common.php');
-    
     checkSession();
-    error_reporting(0);
-    
-    $localPath = "../../workspace/";
     
     switch($_GET['action']) {
         
         case 'getFiles':
             if (isset($_GET['path'])) {
-                $all = scanProject($localPath.$_GET['path']);
+                $file   = getWorkspacePath($_GET['path']);
+                $all    = scanProject($file);
                 $result = array();
                 foreach($all as $one) {
                     //Get file info
                     $fileInfo   = pathinfo($one);
-                    $path       = substr($one, strlen($localPath.$_GET['path'])+1);
+                    $path       = substr($one, strlen($file)+1);
                     if (isset($fileInfo['extension'])) {
                         if (isset($result[$fileInfo['extension']])) {
                             array_push($result[$fileInfo['extension']], $path);
@@ -62,5 +60,21 @@
             }
         }
         return $completeArray;
+    }
+    
+    function getWorkspacePath($path) {
+        if (strpos($path, "/") === 0) {
+            //Unix absolute path
+            return $path;
+        }
+        if (strpos($path, ":/") !== false) {
+            //Windows absolute path
+            return $path;
+        }
+        if (strpos($path, ":\\") !== false) {
+            //Windows absolute path
+            return $path;
+        }
+        return "../../workspace/".$path;
     }
 ?>
