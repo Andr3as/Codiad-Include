@@ -36,6 +36,12 @@
             amplify.subscribe("Include.Callback", function(obj){
                 _this.replacePrefix(obj);
             });
+            //Check requirements
+            setTimeout(function(){
+                if (typeof(codiad.Complete) == 'undefined') {
+                    codiad.modal.load(400,_this.path+"dialog.php");
+                }
+            }, 2000);
         },
         
         //////////////////////////////////////////////////////////
@@ -234,6 +240,18 @@
             }
             codiad.Complete.replacePrefix(path);
             return true;
+        },
+        
+        goTo: function(target) {
+            if (target == "github") {
+                $.getJSON(this.path+"plugin.json", function(data){
+                    codiad.modal.unload();
+                    window.open(data[0].url, '_newtab');
+                });
+            } else {
+                codiad.modal.unload();
+                codiad.market.list();
+            }
         }
     };
 })(this, jQuery);
