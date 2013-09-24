@@ -166,6 +166,22 @@
                     if (this.isAtEnd(text, "require_once\""+obj.prefix)) {
                         this.sendSuggestion("php", obj.file);
                     }
+                    //include
+                    if (this.isAtEnd(text, "include(\""+obj.prefix)) {
+                        this.sendSuggestion("php", obj.file);
+                    }
+                    //include_once
+                    if (this.isAtEnd(text, "include_once(\""+obj.prefix)) {
+                        this.sendSuggestion("php", obj.file);
+                    }
+                    //require
+                    if (this.isAtEnd(text, "require(\""+obj.prefix)) {
+                        this.sendSuggestion("php", obj.file);
+                    }
+                    //require_once
+                    if (this.isAtEnd(text, "require_once(\""+obj.prefix)) {
+                        this.sendSuggestion("php", obj.file);
+                    }
                     break;
                 default:
                     break;
