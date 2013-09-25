@@ -86,6 +86,39 @@
                 case "csharp":
                     //Comes later
                     break;
+                case "php":
+                    //include
+                    if (this.isAtEnd(text, "include\""+obj.prefix)) {
+                        this.sendSuggestion("php", obj.file);
+                    }
+                    //include_once
+                    if (this.isAtEnd(text, "include_once\""+obj.prefix)) {
+                        this.sendSuggestion("php", obj.file);
+                    }
+                    //require
+                    if (this.isAtEnd(text, "require\""+obj.prefix)) {
+                        this.sendSuggestion("php", obj.file);
+                    }
+                    //require_once
+                    if (this.isAtEnd(text, "require_once\""+obj.prefix)) {
+                        this.sendSuggestion("php", obj.file);
+                    }
+                    //include
+                    if (this.isAtEnd(text, "include(\""+obj.prefix)) {
+                        this.sendSuggestion("php", obj.file);
+                    }
+                    //include_once
+                    if (this.isAtEnd(text, "include_once(\""+obj.prefix)) {
+                        this.sendSuggestion("php", obj.file);
+                    }
+                    //require
+                    if (this.isAtEnd(text, "require(\""+obj.prefix)) {
+                        this.sendSuggestion("php", obj.file);
+                    }
+                    //require_once
+                    if (this.isAtEnd(text, "require_once(\""+obj.prefix)) {
+                        this.sendSuggestion("php", obj.file);
+                    }
                 case "html":
                     //Script
                     if ((text.lastIndexOf("<script") > text.lastIndexOf(">")) && this.isAtEnd(text, "src=\""+obj.prefix)) {
@@ -147,40 +180,6 @@
                         this.sendSuggestion("jpeg", obj.file);
                         this.sendSuggestion("gif", obj.file);
                         this.sendSuggestion("png", obj.file);
-                    }
-                    break;
-                case "php":
-                    //include
-                    if (this.isAtEnd(text, "include\""+obj.prefix)) {
-                        this.sendSuggestion("php", obj.file);
-                    }
-                    //include_once
-                    if (this.isAtEnd(text, "include_once\""+obj.prefix)) {
-                        this.sendSuggestion("php", obj.file);
-                    }
-                    //require
-                    if (this.isAtEnd(text, "require\""+obj.prefix)) {
-                        this.sendSuggestion("php", obj.file);
-                    }
-                    //require_once
-                    if (this.isAtEnd(text, "require_once\""+obj.prefix)) {
-                        this.sendSuggestion("php", obj.file);
-                    }
-                    //include
-                    if (this.isAtEnd(text, "include(\""+obj.prefix)) {
-                        this.sendSuggestion("php", obj.file);
-                    }
-                    //include_once
-                    if (this.isAtEnd(text, "include_once(\""+obj.prefix)) {
-                        this.sendSuggestion("php", obj.file);
-                    }
-                    //require
-                    if (this.isAtEnd(text, "require(\""+obj.prefix)) {
-                        this.sendSuggestion("php", obj.file);
-                    }
-                    //require_once
-                    if (this.isAtEnd(text, "require_once(\""+obj.prefix)) {
-                        this.sendSuggestion("php", obj.file);
                     }
                     break;
                 case "twig":
