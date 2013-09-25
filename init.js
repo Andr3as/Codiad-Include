@@ -55,7 +55,12 @@
 		//////////////////////////////////////////////////////////
         updateFiles: function(path) {
             var _this   = this;
-            var project = path.substring(0, path.indexOf("/"));
+            var project;
+            if (path.search("/") !== 0) {
+                project = path.substring(0, path.indexOf("/"));
+            } else {
+                project = path.substring(0, path.lastIndexOf("/"));
+            }
             $.getJSON(this.path+"controller.php?action=getFiles&path="+project, function(data){
                 _this.files = data;
             });
