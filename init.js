@@ -183,6 +183,12 @@
                         this.sendSuggestion("php", obj.file);
                     }
                     break;
+                case "twig":
+                    if(this.isAtEnd(text, "{%include\""+obj.prefix)) {
+                        this.sendSuggestion("twig", obj.file);
+                        this.sendSuggestion("html", obj.file);
+                    }
+                    break; 
                 default:
                     break;
             }
