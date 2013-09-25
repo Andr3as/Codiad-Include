@@ -4,7 +4,7 @@ Include files in the current project through autocomplete
 
 ##Requirements
 
-- [https://github.com/Andr3as/Codiad-CompletePlus/](CompletePlus "CompletePlus") has to be installed
+- [CompletePlus](https://github.com/Andr3as/Codiad-CompletePlus/ "CompletePlus") has to be installed
 
 ##Installation
 
