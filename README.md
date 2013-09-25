@@ -1,4 +1,4 @@
-#Compress
+#Include
 
 Include files in the current project through autocomplete
 
