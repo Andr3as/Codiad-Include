@@ -1,8 +1,9 @@
 /*
-* Copyright (c) Codiad & Andr3as, distributed
-* as-is and without warranty under the MIT License.
-* See [root]/license.md for more information. This information must remain intact.
-*/
+ * Copyright (c) Codiad & Andr3as, distributed
+ * as-is and without warranty under the MIT License.
+ * See http://opensource.org/licenses/MIT for more information.
+ * This information must remain intact.
+ */
 
 (function(global, $){
     
@@ -268,6 +269,15 @@
             return true;
         },
         
+        //////////////////////////////////////////////////////////
+        //
+        //  Switch to a certain target
+        //
+        //  Parameters:
+        //
+        //  target - {string} - Target to switch to
+        //
+        //////////////////////////////////////////////////////////
         goTo: function(target) {
             if (target == "github") {
                 $.getJSON(this.path+"plugin.json", function(data){

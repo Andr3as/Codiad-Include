@@ -1,7 +1,8 @@
 <!--
     Copyright (c) Codiad & Andr3as, distributed
     as-is and without warranty under the MIT License. 
-    See [root]/license.md for more information. This information must remain intact.
+    See http://opensource.org/licenses/MIT for more information.
+    This information must remain intact.
 -->
 <form id="dateForm">
     <label>Missing requirements</label>

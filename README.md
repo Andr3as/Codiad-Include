@@ -9,7 +9,6 @@ Include files in the current project through autocomplete
 ##Installation
 
 - Download the zip file and unzip it to your plugin folder.
-- Enable this plugin in the plugin manager.
 
 ##Example
 
