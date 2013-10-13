@@ -24,8 +24,8 @@
         //////////////////////////////////////////////////////////
         //
         //  Init - Subscribe to amplify publications
-		//
-		//////////////////////////////////////////////////////////
+        //
+        //////////////////////////////////////////////////////////
         init: function() {
             var _this = this;
             amplify.subscribe("active.onFocus", function(path){
@@ -49,11 +49,11 @@
         //
         //  Update file list of the project of the current focused file
         //
-		//  Parameters:
-		//
-		//  path - {String} - Current focused file path
-		//
-		//////////////////////////////////////////////////////////
+        //  Parameters:
+        //
+        //  path - {String} - Current focused file path
+        //
+        //////////////////////////////////////////////////////////
         updateFiles: function(path) {
             var _this   = this;
             var project;
@@ -72,10 +72,10 @@
         //  Get suggestion
         //
         //  Parameters:
-		//
-		//  obj - {Object} - CompletePlus publishing object
-		//
-		//////////////////////////////////////////////////////////
+        //
+        //  obj - {Object} - CompletePlus publishing object
+        //
+        //////////////////////////////////////////////////////////
         getSuggestions: function(obj) {
             var text    = obj.before.replace(new RegExp(" ", "g"), "");
             text        = text.replace(new RegExp("\t", "g"), "");
@@ -204,11 +204,11 @@
         //  Commit suggestions to CompletePlus
         //
         //  Parameters:
-		//
-		//  ext - {String} - Extension of the files to commit
+        //
+        //  ext - {String} - Extension of the files to commit
         //  curFile - {String} - File path of the current file
-		//
-		//////////////////////////////////////////////////////////
+        //
+        //////////////////////////////////////////////////////////
         sendSuggestion: function(ext, curFile) {
             if (typeof(this.files[ext]) == 'undefined') {
                 return false;
@@ -232,11 +232,11 @@
         //  Test if item is at the end of string
         //
         //  Parameters:
-		//
-		//  string - {String} - String to search in
+        //
+        //  string - {String} - String to search in
         //  item - {String} - Item to search for
-		//
-		//////////////////////////////////////////////////////////
+        //
+        //////////////////////////////////////////////////////////
         isAtEnd: function(string, item) {
             var pos = string.lastIndexOf(item);
             if (pos != -1) {
@@ -256,10 +256,10 @@
         //  Replace prefix with file path
         //
         //  Parameters:
-		//
-		//  obj - {Object} - Suggestion object
-		//
-		//////////////////////////////////////////////////////////
+        //
+        //  obj - {Object} - Suggestion object
+        //
+        //////////////////////////////////////////////////////////
         replacePrefix: function(obj) {
             var path = prompt("Edit include path:", "/"+obj.suggestion);
             if (path === null) {

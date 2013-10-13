@@ -1,6 +1,6 @@
 #Include
 
-Include files in the current project through autocomplete
+Include files in the current file through autocomplete
 
 ##Requirements
 

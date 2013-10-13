@@ -42,6 +42,14 @@
             break;
     }
     
+    //////////////////////////////////////////////////////////
+    //
+    //  Scan folder
+    //
+    //  @param {string} $path Path of the file or project
+    //  @returns {array} Array of files, recursivly
+    //
+    //////////////////////////////////////////////////////////
     function scanProject($path) {
         $completeArray = array();
         $files  = scandir($path);
@@ -63,6 +71,14 @@
         return $completeArray;
     }
     
+    //////////////////////////////////////////////////////////
+    //
+    //  Get path of file or project
+    //
+    //  @param {string} $path Info of the file or project
+    //  @returns {string} Path of file or project
+    //
+    //////////////////////////////////////////////////////////
     function getWorkspacePath($path) {
         if (strpos($path, "/") === 0) {
             //Unix absolute path
