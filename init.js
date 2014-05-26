@@ -20,6 +20,7 @@
         
         path: curpath,
         files: null,
+        cache: [],
         
         //////////////////////////////////////////////////////////
         //
@@ -62,8 +63,16 @@
             } else {
                 project = path.substring(0, path.lastIndexOf("/"));
             }
+            var date = new Date().getTime();
+            if (typeof(this.cache[project]) != 'undefined') {
+                if (this.cache[project].time > date - 60000) {
+                    _this.files = this.cache[project].files;
+                    return;
+                }
+            }
             $.getJSON(this.path+"controller.php?action=getFiles&path="+project, function(data){
                 _this.files = data;
+                _this.cache[project] = {files: data, time: new Date().getTime()};
             });
         },
         

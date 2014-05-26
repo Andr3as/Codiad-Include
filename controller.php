@@ -19,16 +19,12 @@
                 $result = array();
                 foreach($all as $one) {
                     //Get file info
-                    $fileInfo   = pathinfo($one);
+                    $ext        = getExtension($one);
                     $path       = substr($one, strlen($file)+1);
-                    if (isset($fileInfo['extension'])) {
-                        if (isset($result[$fileInfo['extension']])) {
-                            array_push($result[$fileInfo['extension']], $path);
-                        } else {
-                            $result[$fileInfo['extension']] = array($path);
-                        }
+                    if (isset($result[$ext])) {
+                        array_push($result[$ext], $path);
                     } else {
-                        $result["no-ext"] = array($path);
+                        $result[$ext] = array($path);
                     }
                 }
                 echo json_encode($result);
@@ -55,20 +51,37 @@
         $files  = scandir($path);
         foreach ($files as $file) {
             //filter . and ..
-            if ($file != "." && $file != "..") {
+            $longPath   = $path."/".$file;
+            if ($file != "." && $file != ".." && !is_link($longPath)) {
                 //check if $file is a folder
-                $longPath   = $path."/".$file;
                 if (is_dir($longPath)) {
                     //scan dir
                     $parsedArray    = scanProject($longPath);
                     $completeArray  = array_merge($completeArray, $parsedArray);
                 } else {
-                    $parsedArray    = array(0 => $longPath);
-                    $completeArray  = array_merge($completeArray, $parsedArray);
+                    array_push($completeArray, $longPath);
                 }
             }
         }
         return $completeArray;
+    }
+    
+    //////////////////////////////////////////////////////////
+    //
+    //  Get extension of file
+    //
+    //  @param {string} $path Path of file
+    //  @returns {string} Extension of file
+    //
+    //////////////////////////////////////////////////////////
+    function getExtension($path) {
+        $name = basename($path);
+        $pos = strrpos($name, '.');
+        if ($pos !== false) {
+            return substr($name, $pos + 1);
+        } else {
+            return "no-ext";
+        }
     }
     
     //////////////////////////////////////////////////////////
