@@ -1,0 +1,129 @@
+[
+    {
+        "scope": ["html", "php"],
+        "regex": "(<script[^>]*src\\='[^']*)$",
+        "char": "'",
+        "ext": ["js"]
+    },{
+        "scope": ["html", "php"],
+        "regex": "(<script[^>]*src\\=\"[^\"]*)$",
+        "char": "\"",
+        "ext": ["js"]
+    },{
+        "scope": ["html", "php"],
+        "regex": "(<link[^>]*href\\='[^']*)$",
+        "char": "'",
+        "ext": ["css", "png", "ico"]
+    },{
+        "scope": ["html", "php"],
+        "regex": "(<link[^>]*href\\=\"[^\"]*)$",
+        "char": "\"",
+        "ext": ["css", "png", "ico"]
+    },{
+        "scope": ["html", "php"],
+        "regex": "(<a[^>]*href\\='[^']*)$",
+        "char": "'",
+        "ext": ["html", "php", "htm"]
+    },{
+        "scope": ["html", "php"],
+        "regex": "(<a[^>]*href\\=\"[^\"]*)$",
+        "char": "\"",
+        "ext": ["html", "php", "htm"]
+    },{
+        "scope": ["html", "php"],
+        "regex": "(<img[^>]*src\\='[^']*)$",
+        "char": "'",
+        "ext": ["png", "jpeg", "jpg", "gif", "bmp", "pcx", "tif", "tiff"]
+    },{
+        "scope": ["html", "php"],
+        "regex": "(<img[^>]*src\\=\"[^\"]*)$",
+        "char": "\"",
+        "ext": ["png", "jpeg", "jpg", "gif", "bmp", "pcx", "tif", "tiff"]
+    },{
+        "scope": ["php"],
+        "regex": "([include|include_once|require|require_once][ ]*[(]?[ ]*'[^']*)$",
+        "char": "'",
+        "ext": ["php", "html", "htm"]
+    },
+    {
+        "scope": ["php"],
+        "regex": "([include|include_once|require|require_once][ ]*[(]?[ ]*\"[^\"]*)$",
+        "char": "\"",
+        "ext": ["php", "html", "htm"]
+    },{
+        "scope": ["php","html","javascript"],
+        "regex": "(\\$\\.get\\('[^']*)$",
+        "char": "'",
+        "ext": ["php", "html", "htm", "json"]
+    },{
+        "scope": ["php", "html", "javascript"],
+        "regex": "(\\$\\.get\\(\"[^\"]*)$",
+        "char": "\"",
+        "ext": ["php", "html", "htm", "json"]
+    },{
+        "scope": ["php", "html", "javascript"],
+        "regex": "(\\$\\.post\\('[^']*)$",
+        "char": "'",
+        "ext": ["php"]
+    },{
+        "scope": ["php", "html", "javascript"],
+        "regex": "(\\$\\.post\\(\"[^\"]*)$",
+        "char": "\"",
+        "ext": ["php"]
+    },{
+        "scope": ["php", "html", "javascript"],
+        "regex": "(\\$\\.getJSON\\('[^']*)$",
+        "char": "'",
+        "ext": ["php", "json"]
+    },{
+        "scope": ["php", "html", "javascript"],
+        "regex": "(\\$\\.getJSON\\(\"[^\"]*)$",
+        "char": "\"",
+        "ext": ["php", "json"]
+    },{
+        "scope": ["php", "html", "javascript"],
+        "regex": "(\\$\\.getScript\\('[^']*)$",
+        "char": "'",
+        "ext": ["js"]
+    },{
+        "scope": ["php", "html", "javascript"],
+        "regex": "(\\$\\.getScript\\(\"[^\"]*)$",
+        "char": "\"",
+        "ext": ["js"]
+    },{
+        "scope": ["php", "hmtl", "css"],
+        "regex": "(@import[ ]*(url\\()?[ ]*'[^']*)$",
+        "char": "'",
+        "ext": ["css"]
+    },{
+        "scope": ["php", "html", "css"],
+        "regex": "(@import[ ]*(url\\()?[ ]*\"[^\"]*)$",
+        "char": "\"",
+        "ext": ["css"]
+    },{
+        "scope": ["php", "html", "css"],
+        "regex": "(background-image[ ]*:[ ]*url\\([ ]*'[^']*)$",
+        "char": "'",
+        "ext": ["png", "jpeg", "jpg", "gif", "bmp", "pcx", "tif", "tiff"]
+    },{
+        "scope": ["php", "html", "css"],
+        "regex": "(background-image[ ]*:[ ]*url\\([ ]*\"[^\"]*)$",
+        "char": "\"",
+        "ext": ["png", "jpeg", "jpg", "gif", "bmp", "pcx", "tif", "tiff"]
+    },{
+        "scope": ["c_cpp"],
+        "regex": "(#include[ ]*\"[^\"]*)$",
+        "char": "\"",
+        "ext": ["cpp", "hpp", "c", "h"]
+    },{
+        "scope": ["twig"],
+        "regex": "({%[ ]*include[ ]*'[^']*)$",
+        "char": "'",
+        "ext": ["html"]
+    },{
+        "scope": ["twig"],
+        "regex": "({%[ ]*include[ ]*\"[^\"]*)$",
+        "char": "\"",
+        "ext": ["html", "twig"]
+    }
+]

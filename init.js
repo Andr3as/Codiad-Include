@@ -21,6 +21,7 @@
         path: curpath,
         files: null,
         cache: [],
+        rules: [],
         
         //////////////////////////////////////////////////////////
         //
@@ -37,6 +38,10 @@
             });
             amplify.subscribe("Include.Callback", function(obj){
                 _this.replacePrefix(obj);
+            });
+            //Load rules
+            $.getJSON(this.path + 'rules.json', function(json){
+                _this.rules = json;
             });
             //Check requirements
             setTimeout(function(){
@@ -88,123 +93,18 @@
         getSuggestions: function(obj) {
             var text    = obj.before.replace(new RegExp(" ", "g"), "");
             text        = text.replace(new RegExp("\t", "g"), "");
-            switch (obj.syntax) {
-                case "c_cpp":
-                    //Include statement
-                    if (this.isAtEnd(text, "#include\"")) {
-                        this.sendSuggestion("c", obj.file);
-                        this.sendSuggestion("cpp", obj.file);
-                        this.sendSuggestion("h", obj.file);
-                        this.sendSuggestion("hpp", obj.file);
+            
+            var rule = [];
+            for (var i = 0; i < this.rules.length; i++) {
+                rule = this.rules[i];
+                if (rule.scope.indexOf(obj.syntax) !== -1) {
+                    if (new RegExp(rule.regex).test(obj.before)) {
+                        for (var j = 0; j < rule.ext.length; j++) {
+                            console.log(rule.ext[j]);
+                            this.sendSuggestion(rule.ext[j], obj.file);
+                        }
                     }
-                    break;
-                case "csharp":
-                    //Comes later
-                    break;
-                case "php":
-                    //include
-                    if (this.isAtEnd(text, "include\""+obj.prefix)) {
-                        this.sendSuggestion("php", obj.file);
-                    }
-                    //include_once
-                    if (this.isAtEnd(text, "include_once\""+obj.prefix)) {
-                        this.sendSuggestion("php", obj.file);
-                    }
-                    //require
-                    if (this.isAtEnd(text, "require\""+obj.prefix)) {
-                        this.sendSuggestion("php", obj.file);
-                    }
-                    //require_once
-                    if (this.isAtEnd(text, "require_once\""+obj.prefix)) {
-                        this.sendSuggestion("php", obj.file);
-                    }
-                    //include
-                    if (this.isAtEnd(text, "include(\""+obj.prefix)) {
-                        this.sendSuggestion("php", obj.file);
-                    }
-                    //include_once
-                    if (this.isAtEnd(text, "include_once(\""+obj.prefix)) {
-                        this.sendSuggestion("php", obj.file);
-                    }
-                    //require
-                    if (this.isAtEnd(text, "require(\""+obj.prefix)) {
-                        this.sendSuggestion("php", obj.file);
-                    }
-                    //require_once
-                    if (this.isAtEnd(text, "require_once(\""+obj.prefix)) {
-                        this.sendSuggestion("php", obj.file);
-                    }
-                case "html":
-                    //Script
-                    if ((text.lastIndexOf("<script") > text.lastIndexOf(">")) && this.isAtEnd(text, "src=\""+obj.prefix)) {
-                        this.sendSuggestion("js", obj.file);
-                    }
-                    //CSS, favicon, touch-icon
-                    if ((text.lastIndexOf("<link") > text.lastIndexOf(">")) && this.isAtEnd(text, "href=\""+obj.prefix)) {
-                        this.sendSuggestion("css", obj.file);
-                        this.sendSuggestion("ico", obj.file);
-                        this.sendSuggestion("png", obj.file);
-                    }
-                    //<a href=""></a>
-                    if ((text.lastIndexOf("<a") > text.lastIndexOf(">")) && this.isAtEnd(text, "href=\""+obj.prefix)) {
-                        this.sendSuggestion("html", obj.file);
-                        this.sendSuggestion("htm", obj.file);
-                        this.sendSuggestion("php", obj.file);
-                    }
-                    //<img src="">
-                    if ((text.lastIndexOf("<img") > text.lastIndexOf(">")) && this.isAtEnd(text, "src=\""+obj.prefix)) {
-                        this.sendSuggestion("jpg", obj.file);
-                        this.sendSuggestion("jpeg", obj.file);
-                        this.sendSuggestion("gif", obj.file);
-                        this.sendSuggestion("png", obj.file);
-                        this.sendSuggestion("bmp", obj.file);
-                        this.sendSuggestion("pcx", obj.file);
-                        this.sendSuggestion("tif", obj.file);
-                        this.sendSuggestion("tiff", obj.file);
-                    }
-                case "javascript":
-                    //$.get
-                    if (this.isAtEnd(text, "$.get(\""+obj.prefix)) {
-                        this.sendSuggestion("html", obj.file);
-                        this.sendSuggestion("htm", obj.file);
-                        this.sendSuggestion("php", obj.file);
-                    }
-                    //$.post
-                    if (this.isAtEnd(text, "$.post(\""+obj.prefix)) {
-                        this.sendSuggestion("php", obj.file);
-                    }
-                    //$.getJSON
-                    if (this.isAtEnd(text, "$.getJSON(\""+obj.prefix)) {
-                        this.sendSuggestion("php", obj.file);
-                        this.sendSuggestion("json", obj.file);
-                    }
-                    //$.getScript
-                    if (this.isAtEnd(text, "$.getScript(\""+obj.prefix)) {
-                        this.sendSuggestion("js", obj.file);
-                    }
-                    //Support integrated files
-                    if (obj.syntax == "javascript") {
-                        break;
-                    }
-                case "css":
-                    //Import
-                    if (this.isAtEnd(text, "@importurl("+obj.prefix)) {
-                        this.sendSuggestion("css", obj.file);
-                    } else if (this.isAtEnd(text, "background-image:url(")) {  //background-image
-                        this.sendSuggestion("jpg", obj.file);
-                        this.sendSuggestion("jpeg", obj.file);
-                        this.sendSuggestion("gif", obj.file);
-                        this.sendSuggestion("png", obj.file);
-                    }
-                    break;
-                case "twig":
-                    if(this.isAtEnd(text, "{%include\""+obj.prefix)) {
-                        this.sendSuggestion("twig", obj.file);
-                        this.sendSuggestion("html", obj.file);
-                    }
-                    break; 
-                default:
-                    break;
+                }
             }
         },
         
